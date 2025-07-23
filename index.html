@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Pixel Reading Shelf</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- site title (left) -->
+    <a href="https://www.instagram.com/reading_mimmi/profilecard/?igsh=MWhnaXd2Y21sN3ZucQ==" class="site-title" target="_blank" rel="noopener">mimmi’s shelf</a>
+
+    <!-- fixed top‑right filter toggle + status -->
+    <div class="filter-box">
+      <label class="toggle" title="切換 cat3‑waan6 (toggle)">
+        <input type="checkbox" id="filterToggle"/>
+        <span class="slider"></span>
+      </label>
+      <span id="filterLabel" class="filter-label">Currently Reading</span>
+    </div>
+
+    <section id="showcase">
+      <div class="book-display">
+        <img id="cover" class="cover" src="assets/impossible_city.png" alt="Book cover"/>
+        <img class="hand" src="assets/hand.png" alt="Pixel hand"/>
+      </div>
+
+      <div id="back" class="book-back">
+        <h2 id="title"></h2>
+        <h3 id="author"></h3>
+        <ul>
+          <li><strong>Released:</strong> <span id="released"></span></li>
+          <li><strong>Read:</strong> <span id="read"></span></li>
+          <li id="comment"></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="grid" class="grid"></section>
+  </div>
+</body>
+</html>
