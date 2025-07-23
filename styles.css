@@ -18,7 +18,7 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font:17px/1.6 'Inter',sans-serif;overflow-x:hidden;}
+body{background:var(--bg);color:var(--text);font:17px/1.6 'Jersey 15',cursive;overflow-x:hidden;}
 .wrapper{padding-top:4.5rem;}
 
 /* === site title === */
@@ -65,11 +65,10 @@ input:checked+.slider{background:var(--wes-green);}input:checked+.slider:before{
 /* === grid of thumbnails (5 per row) === */
 .grid{
   display:grid;
-  grid-template-columns:repeat(5,1fr); /* exactly 5 per row */
+  grid-template-columns:repeat(5,1fr); /* exactly 5 per row (desktop) */
   gap:1rem;
   padding:1rem 2rem;
-  max-height:40vh;
-  overflow-y:auto;
+  /* removed max-height & internal scroll so whole page scrolls together */
 }
 .thumbnail{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,.2);transition:transform .25s;cursor:pointer;}
 .thumbnail:hover{transform:scale(1.1);} /* siu2‑siu2 daai6 */
