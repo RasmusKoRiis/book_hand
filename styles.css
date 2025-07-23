@@ -70,7 +70,7 @@ input:checked+.slider{background:var(--wes-green);}input:checked+.slider:before{
   padding:1rem 2rem;
   /* removed max-height & internal scroll so whole page scrolls together */
 }
-.thumbnail{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,.2);transition:transform .25s;cursor:pointer;}
+.thumbnail{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:0px;box-shadow:none;transition:transform .25s;cursor:pointer;}
 .thumbnail:hover{transform:scale(1.1);} /* siu2‑siu2 daai6 */
 
 /* scroll bar subtle */
