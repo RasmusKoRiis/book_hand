@@ -81,3 +81,4 @@ input:checked+.slider{background:var(--wes-green);}input:checked+.slider:before{
 @media (max-width:600px){
   .grid{grid-template-columns:repeat(2,1fr);} /* two per row on phones */
 }
+
