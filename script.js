@@ -5,37 +5,52 @@ let books     = [];
 let filter    = 'reading';
 
 function loadBooks(){
-  Papa.parse('data/books.csv',{
-    download:true,header:true,skipEmptyLines:true,
-    complete:(res)=>{
-      books=res.data;
-      renderGrid();
-      // sort by read date – newest first; empty date (currently reading) bubbles to top
+  Papa.parse('data/books.csv', {
+    download: true, header: true, skipEmptyLines: true,
+    complete: (res) => {
+      books = res.data;
+
+      // sort first (newest read first; "reading" with empty date stay on top)
       books.sort((a,b)=>{
         const da = a.date_read || '9999-12-31';
         const db = b.date_read || '9999-12-31';
         return new Date(db) - new Date(da);
       });
-      const first=books.find(b=>b.status==='reading')||books[0];
-      first&&showBook(first,false);
+
+      renderGrid();
+
+      const first = books.find(b => b.status === 'reading') || books[0];
+      first && showBook(first, false);
     }
   });
 }
 
 function renderGrid(){
-  grid.innerHTML='';
-  books.filter(b=>filter==='all'||b.status==='reading')
-       .forEach(b=>{
-         const img=document.createElement('img');
-         img.src=`assets/${b.cover_image}`;
-         img.alt=b.title;
-         img.className='thumbnail';
-         img.addEventListener('click', ()=>{
-          showBook(b,true);                  // swap the showcase
-          window.scrollTo({top:0,behavior:'smooth'}); // jump to top
-        });
-         grid.appendChild(img);
-       });
+  grid.innerHTML = '';
+  const frag = document.createDocumentFragment();
+
+  books
+    .filter(b => filter === 'all' || b.status === 'reading')
+    .forEach(b => {
+      const img = document.createElement('img');
+      img.src = `assets/${b.cover_image}`;
+      img.alt = b.title;
+      img.className = 'thumbnail';
+
+      // Speed wins: lazy load and async decode, low fetch priority
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.setAttribute('fetchpriority', 'low');
+
+      img.addEventListener('click', () => {
+        showBook(b, true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      frag.appendChild(img);
+    });
+
+  grid.appendChild(frag);
 }
 
 function updateLabel(){
